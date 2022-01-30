@@ -13,14 +13,17 @@ function App({articles}) {
 
     // TODO: Play with this in the future to learn more and make it more reusable and cover more use-cases.
     useEffect(() => {
-        setSortedArticles([...articles.sort((a, b) => {
+        const sortedArticlesCopy = [...sortedArticles];
+        sortedArticlesCopy.sort((a, b) => {
             if (sortedBy === 'date') {
                 return new Date(b.date)- new Date(a.date);
             }
             return b.upvotes - a.upvotes;
-        })]);
+        });
+
+        setSortedArticles(sortedArticlesCopy);
     }, [articles, sortedBy]);
-    
+
     return (
         <div className="App">
             <h8k-navbar header={title} />
